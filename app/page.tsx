@@ -16,7 +16,7 @@ export default function Home() {
         </p>
         <dl className="mt-8 space-y-4 font-sans text-foreground/70">
           <div>
-            <dt className="text-xs uppercase tracking-[0.2em] text-accent">
+            <dt className="text-xs uppercase tracking-[0.2em] text-sage-dark">
               Tarih ve Saat
             </dt>
             <dd className="mt-1 text-lg">
@@ -24,7 +24,7 @@ export default function Home() {
             </dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-[0.2em] text-accent">
+            <dt className="text-xs uppercase tracking-[0.2em] text-sage-dark">
               Mekan
             </dt>
             <dd className="mt-1 text-lg">
@@ -42,7 +42,7 @@ export default function Home() {
         </p>
       </Section>
 
-      <footer className="border-t border-accent/20 px-6 py-12 text-center">
+      <footer className="border-t border-sage-light px-6 py-12 text-center">
         <p className="font-serif text-lg text-foreground/60">
           {siteConfig.couple.bride} & {siteConfig.couple.groom}
         </p>
