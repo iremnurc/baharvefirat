@@ -68,7 +68,7 @@ export function CountdownSection() {
   }, [targetIso]);
 
   return (
-    <Section id="countdown" className="pt-20 text-center">
+    <Section id="countdown" className="pt-20 text-center" revealGroup>
       <p className="font-sans text-sm font-semibold uppercase tracking-[0.22em] text-sage-dark">
         Geri Sayım
       </p>

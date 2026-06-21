@@ -47,7 +47,7 @@ export function DraggableMarquee({ images }: DraggableMarqueeProps) {
         return;
       }
 
-      const duration = getNumberAttr(wrapper, "data-duration", 20);
+      const duration = getNumberAttr(wrapper, "data-duration", 40);
       const multiplier = getNumberAttr(wrapper, "data-multiplier", 35);
       const sensitivity = getNumberAttr(wrapper, "data-sensitivity", 0.01);
 
@@ -195,7 +195,7 @@ export function DraggableMarquee({ images }: DraggableMarqueeProps) {
       ref={wrapperRef}
       data-draggable-marquee-init=""
       data-direction="left"
-      data-duration="20"
+      data-duration="40"
       data-multiplier="35"
       data-sensitivity="0.01"
       className="draggable-marquee"

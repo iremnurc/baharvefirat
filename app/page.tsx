@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <PageShell>
-      <Section id="date-location" className="pt-56 text-center">
+      <Section id="date-location" className="pt-56 text-center" revealGroup>
         <h2 className="font-serif text-7xl tracking-wide text-foreground/90 md:text-8xl">
           {siteConfig.wedding.date}
         </h2>
@@ -21,7 +21,10 @@ export default function Home() {
       </Section>
 
       <section id="story" className="w-full py-32">
-        <div className="grid gap-10 md:grid-cols-2 md:items-end">
+        <div
+          className="grid gap-10 md:grid-cols-2 md:items-end"
+          data-reveal-group
+        >
           <div className="relative h-128 w-full overflow-hidden md:h-160">
             <Image
               src="/images/IMG_0892.webp"
@@ -50,7 +53,10 @@ export default function Home() {
       <CountdownSection />
 
       <section id="flow" className="w-full py-32">
-        <div className="flex flex-col gap-12 md:h-160 md:flex-row md:justify-between md:gap-0">
+        <div
+          className="flex flex-col gap-12 md:h-160 md:flex-row md:justify-between md:gap-0"
+          data-reveal-group
+        >
           <div className="flex w-full flex-col gap-10 px-8 text-center md:h-full md:w-[48%] md:justify-between md:pl-9 md:pr-9 md:text-left">
             <div className="flow-details-block flex flex-col gap-6">
               <h2 className="font-serif text-3xl text-foreground/90 md:text-4xl">
@@ -120,7 +126,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="gallery" className="w-full py-32">
+      <section id="gallery" className="w-full py-32" data-reveal-group>
         <DraggableMarquee
           images={[
             "/images/IMG_0904.webp",
@@ -133,7 +139,7 @@ export default function Home() {
         />
       </section>
 
-      <Section id="accommodation" title="Konaklama Bilgileri" className="pt-8 text-center">
+      <Section id="accommodation" title="Konaklama Bilgileri" className="pt-8 text-center" revealGroup>
         <p className="font-sans text-lg leading-relaxed text-foreground/80">
           Misafirlerimiz için anlaşmalı otellerde indirimli konaklama
           alternatifleri sunacağız. Otel isimleri, rezervasyon kodları ve
@@ -142,7 +148,10 @@ export default function Home() {
       </Section>
 
       <section id="rsvp" className="w-full pt-32 pb-12 md:pb-32">
-        <div className="grid items-center gap-10 md:grid-cols-2">
+        <div
+          className="grid items-center gap-10 md:grid-cols-2"
+          data-reveal-group
+        >
           <div className="relative h-128 w-full overflow-hidden md:h-160">
             <Image
               src="/images/IMG_1203.webp"
