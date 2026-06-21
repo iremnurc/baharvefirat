@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { submitRsvp, type RsvpFormState } from "@/app/actions/rsvp";
 import {
   RecaptchaField,
@@ -21,10 +21,24 @@ const labelClassName =
 export function RsvpForm() {
   const [state, formAction, pending] = useActionState(submitRsvp, initialState);
   const recaptchaRef = useRef<RecaptchaHandle>(null);
+  const inFlightRef = useRef(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const recaptchaEnabled = Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+  const isBusy = pending || isSubmitting;
+
+  useEffect(() => {
+    inFlightRef.current = false;
+    // Reset submit lock after the server returns an error response.
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- sync with server action failure
+    setIsSubmitting(false);
+  }, [state.captchaResetKey]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (inFlightRef.current || pending) {
+      return;
+    }
 
     const form = event.currentTarget;
 
@@ -33,6 +47,8 @@ export function RsvpForm() {
       return;
     }
 
+    inFlightRef.current = true;
+    setIsSubmitting(true);
     const formData = new FormData(form);
 
     if (recaptchaEnabled) {
@@ -40,12 +56,16 @@ export function RsvpForm() {
         const token = await recaptchaRef.current?.executeAsync();
 
         if (!token) {
+          inFlightRef.current = false;
+          setIsSubmitting(false);
           return;
         }
 
         formData.set("g-recaptcha-response", token);
         recaptchaRef.current?.reset();
       } catch {
+        inFlightRef.current = false;
+        setIsSubmitting(false);
         return;
       }
     }
@@ -136,10 +156,10 @@ export function RsvpForm() {
 
       <button
         type="submit"
-        disabled={pending}
+        disabled={isBusy}
         className="w-full rounded-md bg-sage-dark px-6 py-3 font-sans text-sm uppercase tracking-[0.15em] text-cream transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {pending ? "Gönderiliyor..." : "Katılım Bildir"}
+        {isBusy ? "Gönderiliyor..." : "Katılım Bildir"}
       </button>
 
       {recaptchaEnabled && (
