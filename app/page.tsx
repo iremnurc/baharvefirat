@@ -9,15 +9,15 @@ export default function Home() {
     <main>
       <Hero />
 
-      <Section id="details" title="Save the Date">
+      <Section id="details" title="Tarihi Not Edin">
         <p className="font-sans text-lg leading-relaxed text-foreground/80">
-          We joyfully invite you to join us as we begin our new chapter
-          together.
+          Hayatımızın en güzel gününde sizleri de aramızda görmekten mutluluk
+          duyarız.
         </p>
         <dl className="mt-8 space-y-4 font-sans text-foreground/70">
           <div>
             <dt className="text-xs uppercase tracking-[0.2em] text-accent">
-              Date & Time
+              Tarih ve Saat
             </dt>
             <dd className="mt-1 text-lg">
               {siteConfig.wedding.date} · {time}
@@ -25,7 +25,7 @@ export default function Home() {
           </div>
           <div>
             <dt className="text-xs uppercase tracking-[0.2em] text-accent">
-              Location
+              Mekan
             </dt>
             <dd className="mt-1 text-lg">
               {venue}
@@ -36,9 +36,9 @@ export default function Home() {
         </dl>
       </Section>
 
-      <Section id="rsvp" title="RSVP">
+      <Section id="rsvp" title="Katılım">
         <p className="font-sans text-lg leading-relaxed text-foreground/80">
-          RSVP details coming soon.
+          Katılım bildirimi detayları yakında eklenecek.
         </p>
       </Section>
 

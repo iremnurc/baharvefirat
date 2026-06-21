@@ -11,7 +11,7 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --font-serif: var(--font-playfair);
-  --font-sans: var(--font-lato);
+  --font-sans: var(--font-manrope);
 }
 
 body {

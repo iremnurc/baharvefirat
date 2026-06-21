@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <header className="flex min-h-[85vh] flex-col items-center justify-center px-6 py-24 text-center">
       <p className="font-sans text-sm uppercase tracking-[0.35em] text-accent">
-        Wedding Invitation
+        Düğün Davetiyesi
       </p>
       <h1 className="mt-6 font-serif text-5xl leading-tight text-foreground md:text-7xl">
         {bride}

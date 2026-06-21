@@ -1,16 +1,17 @@
 export const siteConfig = {
   couple: {
     bride: "Bahar",
-    groom: "Firat",
+    groom: "Fırat",
   },
   wedding: {
-    date: "June 21, 2026",
-    time: "4:00 PM",
-    venue: "Venue Name",
-    city: "City, Country",
+    date: "21 Haziran 2026",
+    time: "16:00",
+    venue: "Mekan Adı",
+    city: "Şehir, Türkiye",
   },
   meta: {
-    title: "Bahar & Firat — Wedding Invitation",
-    description: "You are invited to celebrate the wedding of Bahar and Firat.",
+    title: "Bahar & Fırat — Düğün Davetiyesi",
+    description:
+      "Bahar ve Fırat'ın düğününü kutlamak için sizleri davet ediyoruz.",
   },
 } as const;
