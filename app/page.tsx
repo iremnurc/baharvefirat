@@ -153,7 +153,7 @@ export default function Home() {
               className="object-cover"
             />
           </div>
-          <div className="flex w-full flex-col gap-6 px-8 py-6 text-left md:h-160 md:justify-between md:gap-0 md:pb-0 md:pl-9 md:pr-0 md:pt-0">
+          <div className="flex w-full flex-col gap-6 px-8 py-6 text-left md:h-160 md:justify-between md:gap-0 md:pb-0 md:pl-9 md:pr-9 md:pt-0">
             <div>
               <h2 className="font-serif text-3xl text-foreground/90 md:text-4xl">
                 Bizimle Olacak Mısınız?
