@@ -33,7 +33,7 @@ export default function Home() {
               className="object-cover"
             />
           </div>
-          <div className="pl-9 pr-9 text-left md:pr-9">
+          <div className="pl-9 pr-9 text-center md:pr-9 md:text-left">
             <h2 className="font-serif text-3xl text-foreground/90 md:text-4xl">
               Her şey bir merhaba ile başladı.
             </h2>
