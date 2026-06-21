@@ -1,4 +1,5 @@
 import { Hero } from "@/components/hero";
+import { RsvpForm } from "@/components/rsvp-form";
 import { Section } from "@/components/section";
 import { siteConfig } from "@/lib/site-config";
 
@@ -37,9 +38,10 @@ export default function Home() {
       </Section>
 
       <Section id="rsvp" title="Katılım">
-        <p className="font-sans text-lg leading-relaxed text-foreground/80">
-          Katılım bildirimi detayları yakında eklenecek.
+        <p className="mb-8 font-sans text-lg leading-relaxed text-foreground/80">
+          Lütfen katılımınızı aşağıdaki form aracılığıyla bildirin.
         </p>
+        <RsvpForm />
       </Section>
 
       <footer className="border-t border-sage-light px-6 py-12 text-center">
