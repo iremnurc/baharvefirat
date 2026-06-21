@@ -1,14 +1,17 @@
 "use server";
 
 import { sendRsvpNotification } from "@/lib/email/send-rsvp-notification";
+import { verifyRecaptcha } from "@/lib/recaptcha/verify";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export type RsvpFormState = {
   success: boolean;
   message: string;
+  captchaResetKey?: number;
   errors?: {
     name?: string;
     guestCount?: string;
+    captcha?: string;
   };
 };
 
@@ -22,8 +25,18 @@ export async function submitRsvp(
   const guestCount = formData.get("guestCount")?.toString() ?? "";
   const dietaryRestrictions =
     formData.get("dietaryRestrictions")?.toString().trim() ?? "";
+  const captchaToken =
+    formData.get("g-recaptcha-response")?.toString().trim() ?? "";
 
   const errors: RsvpFormState["errors"] = {};
+
+  if (process.env.RECAPTCHA_SECRET_KEY) {
+    const captchaValid = await verifyRecaptcha(captchaToken);
+
+    if (!captchaValid) {
+      errors.captcha = "Lütfen robot olmadığınızı doğrulayın.";
+    }
+  }
 
   if (!name) {
     errors.name = "Ad soyad gereklidir.";
@@ -34,7 +47,12 @@ export async function submitRsvp(
   }
 
   if (Object.keys(errors).length > 0) {
-    return { success: false, message: "", errors };
+    return {
+      success: false,
+      message: "",
+      errors,
+      captchaResetKey: Date.now(),
+    };
   }
 
   const guestCountNumber = Number(guestCount);
@@ -53,6 +71,7 @@ export async function submitRsvp(
       return {
         success: false,
         message: "Gönderim başarısız oldu. Lütfen tekrar deneyin.",
+        captchaResetKey: Date.now(),
       };
     }
   } catch (error) {
@@ -60,6 +79,7 @@ export async function submitRsvp(
     return {
       success: false,
       message: "Gönderim başarısız oldu. Lütfen tekrar deneyin.",
+      captchaResetKey: Date.now(),
     };
   }
 

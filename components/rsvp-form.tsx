@@ -1,7 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useRef } from "react";
 import { submitRsvp, type RsvpFormState } from "@/app/actions/rsvp";
+import {
+  RecaptchaField,
+  type RecaptchaHandle,
+} from "@/components/recaptcha-field";
 
 const initialState: RsvpFormState = {
   success: false,
@@ -16,6 +20,38 @@ const labelClassName =
 
 export function RsvpForm() {
   const [state, formAction, pending] = useActionState(submitRsvp, initialState);
+  const recaptchaRef = useRef<RecaptchaHandle>(null);
+  const recaptchaEnabled = Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const formData = new FormData(form);
+
+    if (recaptchaEnabled) {
+      try {
+        const token = await recaptchaRef.current?.executeAsync();
+
+        if (!token) {
+          return;
+        }
+
+        formData.set("g-recaptcha-response", token);
+        recaptchaRef.current?.reset();
+      } catch {
+        return;
+      }
+    }
+
+    formAction(formData);
+  }
 
   if (state.success) {
     return (
@@ -26,7 +62,10 @@ export function RsvpForm() {
   }
 
   return (
-    <form action={formAction} className="mx-auto max-w-md space-y-6 text-left">
+    <form
+      onSubmit={handleSubmit}
+      className="mx-auto max-w-md space-y-6 text-left"
+    >
       <div>
         <label htmlFor="name" className={labelClassName}>
           Ad Soyad
@@ -54,7 +93,7 @@ export function RsvpForm() {
           name="guestCount"
           required
           defaultValue=""
-          className={`${inputClassName} mt-2 appearance-none bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2212%22%20height=%228%22%20viewBox=%220%200%2012%208%22%3E%3Cpath%20fill=%22%23748661%22%20d=%22M1%201l5%205%205-5%22/%3E%3C/svg%3E')] bg-[length:12px_8px] bg-[right_1rem_center] bg-no-repeat pr-10`}
+          className={`${inputClassName} mt-2 appearance-none bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2212%22%20height=%228%22%20viewBox=%220%200%2012%208%22%3E%3Cpath%20fill=%22%23748661%22%20d=%22M1%201l5%205%205-5%22/%3E%3C/svg%3E')] bg-size-[12px_8px] bg-position-[right_1rem_center] bg-no-repeat pr-10`}
         >
           <option value="" disabled>
             Seçiniz
@@ -87,6 +126,14 @@ export function RsvpForm() {
         <p className="text-sm text-blush">{state.message}</p>
       )}
 
+      {recaptchaEnabled && (
+        <RecaptchaField
+          key={state.captchaResetKey ?? "initial"}
+          ref={recaptchaRef}
+          error={state.errors?.captcha}
+        />
+      )}
+
       <button
         type="submit"
         disabled={pending}
@@ -94,6 +141,30 @@ export function RsvpForm() {
       >
         {pending ? "Gönderiliyor..." : "Katılım Bildir"}
       </button>
+
+      {recaptchaEnabled && (
+        <p className="text-center text-xs leading-relaxed text-foreground/50">
+          Bu site reCAPTCHA ile korunmaktadır.{" "}
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            Gizlilik Politikası
+          </a>{" "}
+          ve{" "}
+          <a
+            href="https://policies.google.com/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            Hizmet Şartları
+          </a>{" "}
+          geçerlidir.
+        </p>
+      )}
     </form>
   );
 }
