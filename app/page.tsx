@@ -51,7 +51,7 @@ export default function Home() {
 
       <section id="flow" className="w-full py-32">
         <div className="flex flex-col gap-12 md:h-160 md:flex-row md:justify-between md:gap-0">
-          <div className="flex w-full flex-col gap-10 px-8 text-left md:h-full md:w-[48%] md:justify-between md:pl-9 md:pr-9">
+          <div className="flex w-full flex-col gap-10 px-8 text-center md:h-full md:w-[48%] md:justify-between md:pl-9 md:pr-9 md:text-left">
             <div className="flow-details-block flex flex-col gap-6">
               <h2 className="font-serif text-3xl text-foreground/90 md:text-4xl">
                 Etkinlik Detayları
@@ -133,7 +133,7 @@ export default function Home() {
         />
       </section>
 
-      <Section id="accommodation" title="Konaklama Bilgileri" className="pt-8">
+      <Section id="accommodation" title="Konaklama Bilgileri" className="pt-8 text-center">
         <p className="font-sans text-lg leading-relaxed text-foreground/80">
           Misafirlerimiz için anlaşmalı otellerde indirimli konaklama
           alternatifleri sunacağız. Otel isimleri, rezervasyon kodları ve
@@ -141,7 +141,7 @@ export default function Home() {
         </p>
       </Section>
 
-      <section id="rsvp" className="w-full py-32">
+      <section id="rsvp" className="w-full pt-32 pb-12 md:pb-32">
         <div className="grid items-center gap-10 md:grid-cols-2">
           <div className="relative h-128 w-full overflow-hidden md:h-160">
             <Image
@@ -153,7 +153,7 @@ export default function Home() {
               className="object-cover"
             />
           </div>
-          <div className="flex w-full flex-col gap-6 px-8 py-6 text-left md:h-160 md:justify-between md:gap-0 md:pb-0 md:pl-9 md:pr-9 md:pt-0">
+          <div className="flex w-full flex-col gap-6 px-8 py-6 text-center md:h-160 md:justify-between md:gap-0 md:pb-0 md:pl-9 md:pr-9 md:pt-0 md:text-left">
             <div>
               <h2 className="font-serif text-3xl text-foreground/90 md:text-4xl">
                 Bizimle Olacak Mısınız?
@@ -171,7 +171,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-sage-light px-6 py-12 text-left md:text-center">
+      <footer className="border-t border-sage-light px-6 py-12 text-center">
         <p className="font-serif text-2xl text-foreground/60 md:text-3xl">
           {siteConfig.couple.bride} & {siteConfig.couple.groom}
         </p>
