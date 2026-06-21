@@ -33,7 +33,7 @@ function CountdownItem({
   label: string;
 }) {
   return (
-    <div className="rounded-xl border border-sage-dark/30 bg-cream/70 px-4 py-4 text-center">
+    <div className="rounded-xl border border-sage-dark/30 bg-cream/70 px-4 py-4 text-left md:text-center">
       <p className="font-serif text-3xl leading-none text-foreground md:text-4xl">
         {String(value).padStart(2, "0")}
       </p>

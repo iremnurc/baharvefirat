@@ -8,7 +8,7 @@ export const siteConfig = {
     time: "16:00",
     targetDateTime: "2026-09-19T16:00:00+03:00",
     venue: "Mekan Adı",
-    city: "Bodrum, Türkiye",
+    city: "Bodrum",
   },
   meta: {
     title: "Bahar & Fırat — Düğün Davetiyesi",

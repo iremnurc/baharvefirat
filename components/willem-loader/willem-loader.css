@@ -9,8 +9,12 @@
   background: var(--background);
 }
 
-/* During loading the section is hidden until the timeline starts (no FOUC). */
-.willem-header.is--loading.is--hidden {
+/* During loading the section's background covers the page immediately, but the
+   inner layers stay hidden until the timeline starts (avoids both a flash of the
+   page content underneath and a flash of the un-animated letters). */
+.willem-header.is--loading.is--hidden .willem-loader,
+.willem-header.is--loading.is--hidden .willem-header__content,
+.willem-header.is--loading.is--hidden .willem-hero__media {
   visibility: hidden;
 }
 

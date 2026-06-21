@@ -84,7 +84,7 @@ export function RsvpForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex h-full w-full flex-col gap-6 text-left"
+      className="flex w-full flex-col gap-6 text-left"
     >
       <div>
         <label htmlFor="name" className={labelClassName}>
@@ -163,7 +163,7 @@ export function RsvpForm() {
       </button>
 
       {recaptchaEnabled && (
-        <p className="text-center text-xs leading-relaxed text-foreground/50">
+        <p className="text-left text-xs leading-relaxed text-foreground/50 md:text-center">
           Bu site reCAPTCHA ile korunmaktadır.{" "}
           <a
             href="https://policies.google.com/privacy"
