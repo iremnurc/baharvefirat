@@ -1,0 +1,291 @@
+/* Willem loader — adapted from Osmo [https://osmo.supply/] for Bahar & Fırat */
+
+.willem-header {
+  color: var(--foreground);
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow: hidden;
+  background: var(--background);
+}
+
+/* During loading the section is hidden until the timeline starts (no FOUC). */
+.willem-header.is--loading.is--hidden {
+  visibility: hidden;
+}
+
+/* Final state: the section becomes the in-flow hero. */
+.willem-header.is--hero {
+  position: relative;
+  inset: auto;
+  z-index: 1;
+  height: 100dvh;
+  min-height: 100dvh;
+}
+
+/* ----------------------------------------------------------------------------
+   Image layer (persistent) — centered via flex, grows from a point to fullscreen
+---------------------------------------------------------------------------- */
+.willem-hero__media {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+  /* Match the heading scale so the loader image can be sized in `em`
+     units that track the letters (see init-willem-animation.ts). */
+  font-size: 8em;
+}
+
+.willem__growing-image {
+  position: relative;
+  flex: none;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  will-change: width, height, transform;
+}
+
+.willem__growing-image-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.willem__cover-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Same crop for loader + hero so the image never jumps on handoff */
+  object-position: center 38%;
+  user-select: none;
+  pointer-events: none;
+}
+
+.willem-header.is--hero .willem-hero__media {
+  display: block;
+}
+
+.willem-header.is--hero .willem__growing-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Dark scrim for legibility of the white hero text — only visible in hero. */
+.willem-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.4)
+  );
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.willem-header.is--hero .willem-hero__scrim {
+  opacity: 1;
+}
+
+/* ----------------------------------------------------------------------------
+   Loading layer — "Bahar & Fırat" centered
+---------------------------------------------------------------------------- */
+.willem-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  color: var(--foreground);
+}
+
+.willem-header.is--hero .willem-loader {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.willem-loader .willem__h1 {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  white-space: nowrap;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 8em;
+  font-weight: 400;
+  line-height: 1;
+  column-gap: 0.18em;
+}
+
+/* Names hug the centre so the &/image gap stays dead-centre on screen
+   regardless of how wide "Bahar" vs "Fırat" render. */
+.willem__h1-start {
+  display: flex;
+  justify-self: end;
+}
+
+.willem__h1-end {
+  display: flex;
+  justify-self: start;
+}
+
+.willem__amp-wrap {
+  justify-self: center;
+}
+
+.willem__letter-wrap,
+.willem__amp-wrap {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1.1;
+  padding-bottom: 0.08em;
+}
+
+.willem__letter,
+.willem__amp {
+  display: block;
+  line-height: 1.1;
+  position: relative;
+}
+
+/* ----------------------------------------------------------------------------
+   Hero layer — Bahar (top-left) · & (center) · Fırat (bottom-right)
+---------------------------------------------------------------------------- */
+.willem-header__content {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  padding: 3em;
+  pointer-events: none;
+}
+
+.willem-hero__title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  translate: 0 4vh;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 8em;
+  font-weight: 400;
+  line-height: 1;
+  color: #f4f4f4;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Zero-size anchor at screen centre; names offset in `em` so spacing
+   scales with type and never overlaps on smaller screens. */
+.willem-hero__cluster {
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+.willem__hero-name {
+  display: flex;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.willem__hero-name.is--start {
+  right: 0.55em;
+  bottom: 0.35em;
+}
+
+.willem__hero-amp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+.willem__hero-name.is--end {
+  left: 0.55em;
+  top: 0.35em;
+}
+
+.willem__letter-white-wrap {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1.1;
+  padding-bottom: 0.08em;
+}
+
+.willem__letter-white {
+  display: block;
+  line-height: 1.1;
+  position: relative;
+}
+
+.willem-hero__tagline {
+  position: absolute;
+  left: 50%;
+  bottom: 3em;
+  translate: -50% 0;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: clamp(0.72rem, 1.15vw, 0.95rem);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #f4f4f4;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------------------------------
+   Responsive
+---------------------------------------------------------------------------- */
+@media screen and (max-width: 991px) {
+  .willem-loader .willem__h1,
+  .willem-hero__title,
+  .willem-hero__media {
+    font-size: 6em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .willem-loader .willem__h1,
+  .willem-hero__title,
+  .willem-hero__media {
+    font-size: 3.75em;
+  }
+
+  .willem-header__content {
+    padding: 1.5em;
+  }
+
+  .willem-hero__title {
+    translate: 0 3vh;
+  }
+
+  .willem-hero__tagline {
+    bottom: 1.5em;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .willem-loader .willem__h1,
+  .willem-hero__title,
+  .willem-hero__media {
+    font-size: 2.5em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .willem-hero__scrim {
+    transition: none;
+  }
+}

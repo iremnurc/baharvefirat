@@ -4,10 +4,11 @@ export const siteConfig = {
     groom: "Fırat",
   },
   wedding: {
-    date: "21 Haziran 2026",
+    date: "19 Eylül 2026",
     time: "16:00",
+    targetDateTime: "2026-09-19T16:00:00+03:00",
     venue: "Mekan Adı",
-    city: "Şehir, Türkiye",
+    city: "Bodrum, Türkiye",
   },
   meta: {
     title: "Bahar & Fırat — Düğün Davetiyesi",

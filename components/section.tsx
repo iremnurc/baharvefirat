@@ -9,7 +9,7 @@ export function Section({ id, title, children, className = "" }: SectionProps) {
   return (
     <section
       id={id}
-      className={`mx-auto w-full max-w-3xl px-6 py-16 text-center ${className}`}
+      className={`mx-auto w-full max-w-3xl px-6 py-32 text-center ${className}`}
     >
       {title && (
         <h2 className="font-serif text-2xl tracking-wide text-foreground/80 md:text-3xl">

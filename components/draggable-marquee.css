@@ -1,0 +1,56 @@
+.draggable-marquee {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: none;
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.draggable-marquee:active {
+  cursor: grabbing;
+}
+
+.draggable-marquee__collection {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: none;
+  will-change: transform;
+}
+
+.draggable-marquee__list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: none;
+}
+
+/* Keep the same image sizes you're already using */
+.draggable-marquee__item {
+  width: 14rem;
+  height: 18rem;
+  margin-right: 1rem;
+  flex: none;
+  overflow: hidden;
+}
+
+.draggable-marquee__item.is--round {
+  border-radius: 100rem;
+}
+
+.draggable-marquee__item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@media screen and (min-width: 768px) {
+  .draggable-marquee__item {
+    width: 18rem;
+    height: 24rem;
+  }
+}

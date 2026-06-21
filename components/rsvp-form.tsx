@@ -13,10 +13,10 @@ const initialState: RsvpFormState = {
 };
 
 const inputClassName =
-  "w-full rounded-md border border-sage-light bg-cream px-4 py-3 font-sans text-foreground outline-none transition-colors placeholder:text-foreground/40 focus:border-sage-dark focus:ring-2 focus:ring-sage/30";
+  "w-full rounded-md border border-sage-light bg-cream px-4 py-4 font-sans text-foreground outline-none transition-colors placeholder:text-foreground/40 focus:border-sage-dark focus:ring-2 focus:ring-sage/30";
 
 const labelClassName =
-  "block text-left text-xs uppercase tracking-[0.2em] text-sage-dark";
+  "block text-left text-sm font-semibold uppercase tracking-[0.2em] text-sage-dark";
 
 export function RsvpForm() {
   const [state, formAction, pending] = useActionState(submitRsvp, initialState);
@@ -84,7 +84,7 @@ export function RsvpForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto max-w-md space-y-6 text-left"
+      className="flex h-full w-full flex-col gap-6 text-left"
     >
       <div>
         <label htmlFor="name" className={labelClassName}>
@@ -120,7 +120,7 @@ export function RsvpForm() {
           </option>
           {[1, 2, 3, 4].map((count) => (
             <option key={count} value={count}>
-              {count} kişi
+              {count}
             </option>
           ))}
         </select>
@@ -131,14 +131,14 @@ export function RsvpForm() {
 
       <div>
         <label htmlFor="dietaryRestrictions" className={labelClassName}>
-          Beslenme kısıtlamaları
+          Özel Diyet / Alerji Bilgisi
         </label>
         <textarea
           id="dietaryRestrictions"
           name="dietaryRestrictions"
           rows={3}
           className={`${inputClassName} mt-2 resize-none`}
-          placeholder="Vejetaryen, vegan, alerji vb. (opsiyonel)"
+          placeholder="Vejetaryen, vegan, gluten hassasiyeti, kuruyemiş alerjisi vb. bilgileri paylaşabilirsiniz."
         />
       </div>
 
@@ -157,7 +157,7 @@ export function RsvpForm() {
       <button
         type="submit"
         disabled={isBusy}
-        className="w-full rounded-md bg-sage-dark px-6 py-3 font-sans text-sm uppercase tracking-[0.15em] text-cream transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full cursor-pointer rounded-full bg-sage-dark px-6 py-4 font-sans text-base font-bold uppercase tracking-[0.15em] text-cream transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isBusy ? "Gönderiliyor..." : "Katılım Bildir"}
       </button>

@@ -1,6 +1,22 @@
 @import "tailwindcss";
 
+/* ------------------------- Scaling System by Osmo [https://osmo.supply/] ------------------------- */
+
+/* Desktop */
 :root {
+  --size-unit: 16;
+  --size-container-ideal: 1440;
+  --size-container-min: 992px;
+  --size-container-max: 1920px;
+  --size-container: clamp(
+    var(--size-container-min),
+    100vw,
+    var(--size-container-max)
+  );
+  --size-font: calc(
+    var(--size-container) / (var(--size-container-ideal) / var(--size-unit))
+  );
+
   --cream: #e5e4e0;
   --sage-light: #c3cab8;
   --sage: #9eab92;
@@ -11,6 +27,33 @@
   --background: var(--cream);
   --accent: var(--sage-dark);
   --accent-secondary: var(--blush);
+}
+
+/* Tablet */
+@media screen and (max-width: 991px) {
+  :root {
+    --size-container-ideal: 834;
+    --size-container-min: 768px;
+    --size-container-max: 991px;
+  }
+}
+
+/* Mobile Landscape */
+@media screen and (max-width: 767px) {
+  :root {
+    --size-container-ideal: 550;
+    --size-container-min: 480px;
+    --size-container-max: 767px;
+  }
+}
+
+/* Mobile Portrait */
+@media screen and (max-width: 479px) {
+  :root {
+    --size-container-ideal: 390;
+    --size-container-min: 320px;
+    --size-container-max: 479px;
+  }
 }
 
 @theme inline {
@@ -27,7 +70,31 @@
   --font-sans: var(--font-manrope);
 }
 
+html {
+  font-size: var(--size-font);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--size-container);
+  margin-inline: auto;
+}
+
+.container-medium {
+  max-width: calc(var(--size-container) * 0.85);
+}
+
+.container-small {
+  max-width: calc(var(--size-container) * 0.7);
 }
