@@ -4,6 +4,9 @@ import { CountdownSection } from "@/components/countdown-section";
 import { DraggableMarquee } from "@/components/draggable-marquee";
 import { RsvpForm } from "@/components/rsvp-form";
 import { Section } from "@/components/section";
+import { SecondaryButton } from "@/components/secondary-button";
+import { AddToCalendarButton } from "@/components/add-to-calendar-button";
+import { getGoogleCalendarUrl } from "@/lib/calendar";
 import { siteConfig } from "@/lib/site-config";
 
 export default function Home() {
@@ -66,7 +69,7 @@ export default function Home() {
                 Hayatımızın en güzel gününde sizleri de aramızda görmekten
                 mutluluk duyarız.
               </p>
-              <dl className="grid gap-4 font-sans text-foreground/70 md:grid-cols-2">
+              <dl className="grid gap-6 font-sans text-foreground/70 md:grid-cols-2 md:gap-4">
                 <div>
                   <dt className="text-sm font-semibold uppercase tracking-[0.2em] text-sage-dark">
                     Tarih ve Saat
@@ -74,6 +77,13 @@ export default function Home() {
                   <dd className="mt-2 text-lg">
                     {siteConfig.wedding.date} · {time}
                   </dd>
+                  <AddToCalendarButton
+                    googleUrl={getGoogleCalendarUrl()}
+                    icsUrl="/api/calendar"
+                    className="mt-4"
+                  >
+                    Takvime Ekleyin
+                  </AddToCalendarButton>
                 </div>
                 <div>
                   <dt className="text-sm font-semibold uppercase tracking-[0.2em] text-sage-dark">
@@ -82,6 +92,9 @@ export default function Home() {
                   <dd className="mt-2 text-lg whitespace-nowrap">
                     {venue}, {city}
                   </dd>
+                  <SecondaryButton href={siteConfig.wedding.mapsUrl} external className="mt-4">
+                    Yol Tarifi Alın
+                  </SecondaryButton>
                 </div>
               </dl>
             </div>
