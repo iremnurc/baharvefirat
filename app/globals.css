@@ -17,10 +17,10 @@
     var(--size-container) / (var(--size-container-ideal) / var(--size-unit))
   );
 
-  --cream: #e5e4e0;
-  --sage-light: #c3cab8;
-  --sage: #9eab92;
-  --sage-dark: #748661;
+  --cream: #f6f5f1;
+  --sage-light: #c4ccb8;
+  --sage: #9ca88a;
+  --sage-dark: #626c52;
   --blush: #dcb9ba;
   --foreground: #373737;
 
@@ -81,7 +81,14 @@ html::-webkit-scrollbar {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: url("/images/paper-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Fixed so the subtle paper texture fills the viewport without tiling seams
+     or over-zooming on tall pages. */
+  background-attachment: fixed;
   color: var(--foreground);
 }
 

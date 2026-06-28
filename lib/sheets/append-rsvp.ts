@@ -3,7 +3,6 @@ type RsvpSheetRow = {
   name: string;
   guestCount: number | null;
   guestNames: string[];
-  dietaryRestrictions: string | null;
   phoneCountryCode: string | null;
   phoneNumber: string | null;
 };
@@ -37,7 +36,6 @@ export async function appendRsvpToSheet(rsvp: RsvpSheetRow): Promise<void> {
     guestCount: rsvp.attending ? rsvp.guestCount ?? "" : "",
     guestNames: rsvp.guestNames.join(", "),
     phone,
-    dietary: rsvp.dietaryRestrictions ?? "",
   };
 
   const controller = new AbortController();

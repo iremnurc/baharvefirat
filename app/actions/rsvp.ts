@@ -35,8 +35,6 @@ export async function submitRsvp(
     .filter(Boolean);
   const phoneCountryIso = formData.get("phoneCountry")?.toString().trim() ?? "";
   const phoneNumber = formData.get("phoneNumber")?.toString().trim() ?? "";
-  const dietaryRestrictions =
-    formData.get("dietaryRestrictions")?.toString().trim() ?? "";
   const captchaToken =
     formData.get("g-recaptcha-response")?.toString().trim() ?? "";
 
@@ -110,7 +108,6 @@ export async function submitRsvp(
       name,
       guest_count: isAttending ? guestCountNumber : null,
       guest_names: isAttending && guestNames.length > 0 ? guestNames : null,
-      dietary_restrictions: isAttending && dietaryRestrictions ? dietaryRestrictions : null,
       phone_country_code: isAttending && phoneCountry ? phoneCountry.code : null,
       phone_number: normalizedPhoneNumber,
     });
@@ -138,7 +135,6 @@ export async function submitRsvp(
       name,
       guestCount: guestCountNumber,
       guestNames: isAttending ? guestNames : [],
-      dietaryRestrictions: isAttending && dietaryRestrictions ? dietaryRestrictions : null,
       phoneCountryCode: isAttending && phoneCountry ? phoneCountry.code : null,
       phoneNumber: normalizedPhoneNumber,
     });

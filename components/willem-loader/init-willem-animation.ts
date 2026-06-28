@@ -33,7 +33,6 @@ export function initWillemLoadingAnimation(
   const heroLetters = container.querySelectorAll<HTMLElement>(
     ".willem-header__content .willem__letter-white",
   );
-  const heroTagline = container.querySelector<HTMLElement>(".willem-hero__tagline");
 
   // Initial state for the image: a zero-size point in the center.
   if (growingImage) {
@@ -115,13 +114,6 @@ export function initWillemLoadingAnimation(
         ease: "expo.out",
       },
       "<0.35",
-    );
-  }
-  if (heroTagline) {
-    tl.from(
-      heroTagline,
-      { autoAlpha: 0, y: 24, duration: 0.8, ease: "power2.out" },
-      "<0.2",
     );
   }
 

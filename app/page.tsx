@@ -70,9 +70,10 @@ export default function Home() {
               Katılım Durumunuzu Bildirin
             </h2>
             <p className="mt-4 font-sans text-lg leading-relaxed text-foreground/80">
-              Bu özel günümüzde sizleri aramızda görmekten mutluluk duyarız.
-              Lütfen katılım durumunuzu aşağıdaki form aracılığıyla
-              bildiriniz.
+              Evliliğimizi, keyifli bir sofrada buluşup kadeh kaldıracağımız;
+              bol kahkahalı, bol danslı bir akşamda sizlerle kutlamak için
+              sabırsızlanıyoruz. Lütfen katılım durumunuzu aşağıdaki form
+              aracılığıyla bildirin.
             </p>
           </div>
           <RsvpForm />

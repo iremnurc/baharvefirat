@@ -148,9 +148,6 @@ export function WillemLoader({ onComplete }: WillemLoaderProps) {
             </span>
           </div>
         </div>
-        <p className="willem-hero__tagline">
-          BU ÖZEL YOLCULUĞUN BAŞLANGICINA TANIKLIK EDİN.
-        </p>
       </div>
     </section>
   );

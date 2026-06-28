@@ -201,19 +201,6 @@ export function RsvpForm() {
           )}
 
           <div>
-            <label htmlFor="dietaryRestrictions" className={labelClassName}>
-              Özel Diyet / Alerji Bilgisi
-            </label>
-            <textarea
-              id="dietaryRestrictions"
-              name="dietaryRestrictions"
-              rows={3}
-              className={`${inputClassName} mt-2 resize-none`}
-              placeholder="Vejetaryen, vegan, gluten hassasiyeti, kuruyemiş alerjisi vb. bilgileri paylaşabilirsiniz."
-            />
-          </div>
-
-          <div>
             <label htmlFor="phoneNumber" className={labelClassName}>
               Telefon Numarası
             </label>
