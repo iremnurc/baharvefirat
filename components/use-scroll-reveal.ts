@@ -196,9 +196,11 @@ export function useScrollReveal(enabled: boolean) {
     });
 
     const refreshId = requestAnimationFrame(() => ScrollTrigger.refresh());
+    const delayedRefreshId = window.setTimeout(() => ScrollTrigger.refresh(), 400);
 
     return () => {
       cancelAnimationFrame(refreshId);
+      window.clearTimeout(delayedRefreshId);
       ctx.revert();
     };
   }, [enabled]);

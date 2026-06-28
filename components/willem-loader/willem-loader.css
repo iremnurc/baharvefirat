@@ -23,8 +23,11 @@
   position: relative;
   inset: auto;
   z-index: 1;
-  height: 100dvh;
-  min-height: 100dvh;
+  /* svh (not dvh) so the hero height stays fixed as the mobile address bar
+     shows/hides on scroll — dvh resizes the box and makes the image appear to
+     drift. */
+  height: 100svh;
+  min-height: 100svh;
 }
 
 /* ----------------------------------------------------------------------------

@@ -96,7 +96,7 @@ export function initWillemLoadingAnimation(
   if (growingImage) {
     tl.to(
       growingImage,
-      { width: "100vw", height: "100dvh", duration: 1.9 },
+      { width: "100vw", height: "100svh", duration: 1.9 },
       ">-0.1",
     );
   }

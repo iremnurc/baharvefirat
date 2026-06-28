@@ -23,8 +23,7 @@ const EVENT_DETAILS =
  * site-config (start time + duration).
  */
 export function getGoogleCalendarUrl(): string {
-  const { targetDateTime, durationHours, venue, city } = siteConfig.wedding;
-  const { bride, groom } = siteConfig.couple;
+  const { targetDateTime, durationHours, mapsUrl } = siteConfig.wedding;
 
   const start = new Date(targetDateTime);
   const end = new Date(start.getTime() + durationHours * 60 * 60 * 1000);
@@ -33,7 +32,7 @@ export function getGoogleCalendarUrl(): string {
     action: "TEMPLATE",
     text: EVENT_TITLE,
     dates: `${toGoogleDate(start)}/${toGoogleDate(end)}`,
-    location: `${venue}, ${city}`,
+    location: mapsUrl,
     details: EVENT_DETAILS,
   });
 
@@ -45,7 +44,7 @@ export function getGoogleCalendarUrl(): string {
  * Calendar (and any client that prefers a downloadable invite).
  */
 export function getIcsContent(): string {
-  const { targetDateTime, durationHours, venue, city } = siteConfig.wedding;
+  const { targetDateTime, durationHours, mapsUrl } = siteConfig.wedding;
 
   const start = new Date(targetDateTime);
   const end = new Date(start.getTime() + durationHours * 60 * 60 * 1000);
@@ -62,7 +61,7 @@ export function getIcsContent(): string {
     `DTSTART:${toGoogleDate(start)}`,
     `DTEND:${toGoogleDate(end)}`,
     `SUMMARY:${escapeIcsText(EVENT_TITLE)}`,
-    `LOCATION:${escapeIcsText(`${venue}, ${city}`)}`,
+    `LOCATION:${escapeIcsText(mapsUrl)}`,
     `DESCRIPTION:${escapeIcsText(EVENT_DETAILS)}`,
     "END:VEVENT",
     "END:VCALENDAR",

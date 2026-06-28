@@ -5,13 +5,12 @@ export const siteConfig = {
   },
   wedding: {
     date: "19 Eylül 2026",
-    time: "16:00",
-    targetDateTime: "2026-09-19T16:00:00+03:00",
+    time: "18:30",
+    targetDateTime: "2026-09-19T18:30:00+03:00",
     durationHours: 5,
-    venue: "Mekan Adı",
+    venue: "Yengeç",
     city: "Bodrum",
-    mapsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=Mekan+Ad%C4%B1+Bodrum",
+    mapsUrl: "https://maps.app.goo.gl/uEwL86Fr7Sqkt6PE8",
   },
   meta: {
     title: "Bahar & Fırat — Düğün Davetiyesi",
